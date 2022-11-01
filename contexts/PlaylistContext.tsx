@@ -10,7 +10,8 @@ const defaultPlaylistContextState: PlaylistContextState = {
 }
 
 export const PlaylistContext = createContext<IPlaylistContext>({
-    playlistContextState : defaultPlaylistContextState
+    playlistContextState: defaultPlaylistContextState,
+    updatePlaylistContextState: () => { }
 })
 
 export const usePlaylistContext = () => useContext(PlaylistContext)
@@ -40,7 +41,8 @@ const PlaylistContextProvider = ({ children }: { children: ReactNode }) => {
     },[session,spotifyApi])
     
     const playlistContextProviderData = {
-        playlistContextState
+        playlistContextState,
+        updatePlaylistContextState
     }
 
     return <PlaylistContext.Provider value={playlistContextProviderData}>

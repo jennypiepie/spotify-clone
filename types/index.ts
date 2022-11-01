@@ -26,4 +26,5 @@ export interface PlaylistContextState{
 
 export interface IPlaylistContext{
     playlistContextState: PlaylistContextState
+    updatePlaylistContextState:(updatedObj: Partial<PlaylistContextState>) => void
 }
