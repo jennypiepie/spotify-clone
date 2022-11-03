@@ -2,7 +2,7 @@ import { CallbacksOptions } from "next-auth"
 import NextAuth from "next-auth/next"
 import SpotifyProvider from "next-auth/providers/spotify"
 import { scopes, spotifyApi } from "../../../config/spotify"
-import { ExtendedToken, TokenError } from "../../../types"
+import { ExtendedSession, ExtendedToken, TokenError } from "../../../types"
 
 const refreshAccessToken = async (token: ExtendedToken): Promise<ExtendedToken> => {
     try {
@@ -58,8 +58,8 @@ const jwtCallback: CallbacksOptions['jwt'] = async ({ token, account, user }) =>
 }
 
 const sessionCallback: CallbacksOptions['session'] = async ({session ,token}) => {
-    session.accessToken = (token as ExtendedToken).accessToken
-    session.error = (token as ExtendedToken).error
+    (session as ExtendedSession).accessToken = (token as ExtendedToken).accessToken;
+    (session as ExtendedSession).error = (token as ExtendedToken).error;
 
     return session
 }
